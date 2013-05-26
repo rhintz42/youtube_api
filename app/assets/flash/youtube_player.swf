@@ -1,0 +1,123 @@
+package  {
+
+    
+
+    import flash.system.Security;
+
+    import flash.display.MovieClip;
+
+    import flash.events.Event;
+
+    import flash.net.URLLoader;
+
+    import flash.net.URLRequest;
+
+    import flash.display.Loader;
+
+    import flash.events.MouseEvent;
+
+    
+
+    public class YoutubeMain extends MovieClip{
+
+       
+
+        var player : Object;
+
+        var loader : Loader;
+
+        var mute : Boolean = false;
+
+
+
+        public function YoutubeMain() {
+
+            Security.allowDomain("www.youtube.com");
+
+            loader = new Loader();
+
+            loader.load(new URLRequest("http://www.youtube.com/apiplayer?version=3"));
+
+            loader.contentLoaderInfo.addEventListener(Event.INIT, onLoad);
+
+            playButton.addEventListener(MouseEvent.CLICK, playVideo);
+
+            pauseButton.addEventListener(MouseEvent.CLICK, pauseVideo);
+
+            muteButton.addEventListener(MouseEvent.CLICK, muteVideo);
+
+        }
+
+       
+
+        function onLoad(event : Event):void{
+
+            player = loader.content;
+
+            stage.addChild(loader);
+
+            player.addEventListener("onReady", onPlayerReady);
+
+        }
+
+       
+
+        function onPlayerReady(event : Event):void{
+
+            player.setSize(600, 370);
+
+            player.loadVideoById("u1nY_5-UrY4",0);
+
+            player.pauseVideo();
+
+        }
+
+       
+
+        function playVideo(event:MouseEvent):void{
+
+            player.playVideo();
+
+        }
+
+       
+
+        function pauseVideo(event:MouseEvent):void{
+
+            player.pauseVideo();
+
+        }
+
+       
+
+        function muteVideo(event:MouseEvent):void{
+
+            if(!mute){
+
+                player.mute();
+
+                mute = true;
+
+                return;
+
+            }
+
+            else{
+
+                player.unMute();
+
+                mute = false;
+
+            }
+
+        }
+
+      
+
+    }
+
+    
+
+}
+
+

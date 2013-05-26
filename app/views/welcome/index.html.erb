@@ -1,0 +1,42 @@
+<script type="text/javascript" src="assets/swfobject.js"></script>
+      
+<script type="text/javascript">
+  swfobject.embedSWF("assets/test.swf", "myContent", "320", "240", "9.0.0");
+</script>
+<script type="text/javascript" src="assets/swfobject.js"></script>    
+<div id="ytapiplayer">
+  You need Flash player 8+ and JavaScript enabled to view this video.
+</div>
+
+<script type="text/javascript">
+
+  var params = { allowScriptAccess: "always" };
+  var atts = { id: "myytplayer" };
+  swfobject.embedSWF("http://www.youtube.com/v/lA-zdh_bQBo?enablejsapi=1&playerapiid=ytplayer&version=3",
+                     "ytapiplayer", "425", "356", "8", null, null, params, atts);
+ 
+  function onYouTubePlayerReady(playerId) {
+    ytplayer = document.getElementById("myytplayer");
+  }   
+
+  function play() {
+    if (ytplayer) {
+      ytplayer.playVideo();
+    }
+  }
+    
+  function seek() {
+    if (ytplayer) {
+      ytplayer.seekTo(50, true);
+    }
+  }
+    
+
+</script>
+
+<a href="javascript:void(0);" onclick="play();">Play</a>
+<a href="javascript:void(0);" onclick="seek();">Seek</a>
+
+<div id="myContent">
+  <p>Alternative content</p>
+</div>
